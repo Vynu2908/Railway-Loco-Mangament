@@ -1,25 +1,33 @@
-import { useState } from 'react'
-import './App.css'
-import { Button } from '@mui/material'
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import './App.css';
+import { Button } from '@mui/material';
+import AdminPage from './Pages/AdminPage'; // Create this component
+import UserPage from './Pages/UserPage';   // Create this component
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-    <div className="navbar">
-      <h1>Railway Loco Management</h1>
-    </div>
-     <div className="main">
+    <Router>
+      <div className="navbar">
+        <h1>Railway Loco Management</h1>
+      </div>
+      <div className="main">
         <div className="admin-login">
-            <Button>Admin Login</Button>
+          <Link to="/admin">
+            <Button >Admin Login</Button>
+          </Link>
         </div>
         <div className="user-login">
-            <Button>User Login</Button>
+          <Link to="/user">
+            <Button >User Login</Button>
+          </Link>
         </div>
-     </div>
-    </>
-      )
+      </div>
+      <Routes>
+        <Route path="/admin" element={<AdminPage />} />
+        <Route path="/user" element={<UserPage />} />
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;
